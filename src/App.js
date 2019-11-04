@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import styles from "./App.module.css";
+import { Button } from "./Button";
+import { Input } from "./Input";
 
-function App() {
+export function App() {
+  const [name, setName] = useState("Aisha");
+  const [lastName, setLastName] = useState("Gregg");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={styles.App}>
+      <header className={styles.button}>
+        <img src={logo} className={styles["App-logo"]} alt="logo" />
+        <div>
+          <Input
+            name="Nombre"
+            value={name}
+            onValueChange={newValue => setName(newValue)}
+            className={styles.input}
+          />
+          <Input
+            name="Apellido"
+            value={lastName}
+            onValueChange={newValue => setLastName(newValue)}
+          />
+          <Button onClick={() => alert(name + " " + lastName)}>
+            <em>Login</em>
+          </Button>
+        </div>
       </header>
     </div>
   );
 }
-
-export default App;
