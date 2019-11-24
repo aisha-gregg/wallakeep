@@ -3,4 +3,5 @@
   border-radius: var(--border-radius);
   border: none;
   padding: var(--small);
+  cursor: pointer;
 }

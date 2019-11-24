@@ -1,0 +1,10 @@
+.form {
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: var(--border-radius);
+  padding: var(--big);
+}
+
+.link-colour {
+  text-decoration-color: var(--primary-color);
+}

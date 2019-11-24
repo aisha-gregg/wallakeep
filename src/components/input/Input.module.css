@@ -1,8 +1,11 @@
 .wrapper {
+  display: block;
+  padding-bottom: var(--normal);
 }
 
 .label {
-  margin: var(--normal) 0;
+  margin: 0;
+  margin-bottom: var(--small);
 }
 
 .input {
