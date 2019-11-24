@@ -26,17 +26,17 @@ export function App() {
         <Switch>
           <Route path="/login">
             <Page>
-              <Login isUserLoggedIn={state.isUserLoggedIn} onLogin={onLogin} />
+              <Login onLogin={onLogin} />
             </Page>
           </Route>
           <Route path="/register">
             <Page>
-              <Register />
+              <Register onRegister={onLogin} />
             </Page>
           </Route>
           <Route path="/">
             <Page>
-              <Home />
+              <Home onLogout={onLogout} />
             </Page>
           </Route>
         </Switch>
@@ -47,5 +47,10 @@ export function App() {
   function onLogin() {
     setState({ isUserLoggedIn: true });
     localStorage.setItem("isUserLoggedIn", true);
+  }
+
+  function onLogout() {
+    setState({ isUserLoggedIn: false });
+    localStorage.setItem("isUserLoggedIn", false);
   }
 }

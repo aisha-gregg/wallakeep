@@ -5,7 +5,7 @@ import { Button } from "../../components/button/Button";
 import styles from "./Register.module.css";
 import { Form } from "../../components/form/Form";
 
-export function Register() {
+export function Register({ onRegister }) {
   const [name, setName] = useState("Aisha");
   const [lastName, setLastName] = useState("Gregg");
   const [password, setPassword] = useState("hello");
@@ -47,7 +47,14 @@ export function Register() {
           value={tag}
           onValueChange={newValue => setTag(newValue)}
         />
-        <Button onClick={() => saveUser()}>Registrarse</Button>
+        <Button
+          onClick={() => {
+            saveUser();
+            onRegister();
+          }}
+        >
+          Registrarse
+        </Button>
       </Form>
     </div>
   );

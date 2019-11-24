@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import { Form } from "../../components/form/Form";
 
-export function Login({ isUserLoggedIn, onLogin }) {
+export function Login({ onLogin }) {
   const [name, setName] = useState("Aisha");
   const [lastName, setLastName] = useState("Gregg");
 
   return (
     <div className={styles.wrapper}>
-      {"value " + isUserLoggedIn}
       <Form>
         <Input
           name="Nombre"
