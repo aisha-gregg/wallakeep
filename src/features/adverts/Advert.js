@@ -1,5 +1,6 @@
 export class Advert {
   constructor({
+    id,
     name,
     image,
     price,
@@ -9,6 +10,7 @@ export class Advert {
     publicationDate,
     updatedAt
   }) {
+    this.id = id;
     this.name = name;
     this.image = image;
     this.price = price;
@@ -35,9 +37,11 @@ export class Advert {
     price,
     tags,
     type,
-    updatedAt
+    updatedAt,
+    _id
   }) {
     return new Advert({
+      id: _id,
       name,
       description,
       price,

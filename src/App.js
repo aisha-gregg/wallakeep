@@ -10,6 +10,7 @@ import {
 import { Register } from "./features/register/Register";
 import { Page } from "./components/page/Page";
 import { LoginContext } from "./features/login/LoginContext";
+import { AdvertDetail } from "./features/advert-detail/AdvertDetail";
 
 export function App() {
   const isUserLoggedIn = Boolean(localStorage.getItem("isUserLoggedIn"));
@@ -32,6 +33,11 @@ export function App() {
           <Route path="/register">
             <Page>
               <Register onRegister={onLogin} />
+            </Page>
+          </Route>
+          <Route path="/adverts/:id">
+            <Page>
+              <AdvertDetail />
             </Page>
           </Route>
           <Route path="/">
