@@ -17,6 +17,9 @@ export function Home({ onLogout }) {
 
   return (
     <div>
+      <Button onClick={() => history.push("/advert-create")}>
+        Crear anuncio
+      </Button>
       <section className={styles.adverts}>
         {adverts.map(advert => (
           <AdvertExtract
