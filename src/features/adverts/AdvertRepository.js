@@ -10,6 +10,13 @@ export class AdvertRepository {
     });
   }
 
+  async update(advert) {
+    fetch(`${AdvertRepository.url}/${advert.id}`, {
+      method: "PUT",
+      body: JSON.stringify(advert)
+    });
+  }
+
   async findAll() {
     const result = await fetch(AdvertRepository.url);
     const response = await result.json();

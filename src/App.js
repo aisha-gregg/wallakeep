@@ -12,12 +12,11 @@ import { Page } from "./components/page/Page";
 import { LoginContext } from "./features/login/LoginContext";
 import { AdvertDetail } from "./features/advert-detail/AdvertDetail";
 import { AdvertCreate } from "./features/advert-create/AdvertCreate";
-import { AdvertRepository } from "./features/adverts/AdvertRepository";
+import { AdvertModify } from "./features/advert-modify/AdvertModify";
 
 export function App() {
   const isUserLoggedIn = Boolean(localStorage.getItem("isUserLoggedIn"));
   const [state, setState] = useState({ isUserLoggedIn });
-  const advertRepository = new AdvertRepository();
 
   return (
     <LoginContext.Provider value={state}>
@@ -43,9 +42,14 @@ export function App() {
               <AdvertDetail />
             </Page>
           </Route>
+          <Route path="/advert-modify/:id">
+            <Page>
+              <AdvertModify />
+            </Page>
+          </Route>
           <Route path="/advert-create">
             <Page>
-              <AdvertCreate onSubmit={onCreate} />
+              <AdvertCreate />
             </Page>
           </Route>
           <Route path="/">
@@ -66,9 +70,5 @@ export function App() {
   function onLogout() {
     setState({ isUserLoggedIn: false });
     localStorage.setItem("isUserLoggedIn", false);
-  }
-
-  function onCreate(advert) {
-    advertRepository.create(advert);
   }
 }

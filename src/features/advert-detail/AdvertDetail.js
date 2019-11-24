@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { AdvertRepository } from "../adverts/AdvertRepository";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styles from "./AdvertDetail.module.css";
+import { Button } from "../../components/button/Button";
 
 export function AdvertDetail() {
   const [advert, setAdvert] = useState(null);
   const advertRepository = new AdvertRepository();
   const params = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     advertRepository.findOne(params.id).then(result => setAdvert(result));
@@ -17,9 +19,14 @@ export function AdvertDetail() {
   }
 
   return (
-    <article className={styles.advert}>
-      <h2>{advert.name}</h2>
-      <p>{advert.description}</p>
-    </article>
+    <div>
+      <Button onClick={() => history.push(`/advert-modify/${advert.id}`)}>
+        Editar
+      </Button>
+      <article className={styles.advert}>
+        <h2>{advert.name}</h2>
+        <p>{advert.description}</p>
+      </article>
+    </div>
   );
 }
