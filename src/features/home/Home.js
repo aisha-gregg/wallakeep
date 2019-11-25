@@ -20,15 +20,17 @@ export function Home({ onLogout }) {
       <Button onClick={() => history.push("/advert-create")}>
         Crear anuncio
       </Button>
-      <section className={styles.adverts}>
-        {adverts.map(advert => (
-          <AdvertExtract
-            key={advert.id}
-            onAdvertClick={() => history.push(`/adverts/${advert.id}`)}
-            advert={advert}
-          ></AdvertExtract>
-        ))}
-      </section>
+      <article className={styles.article}>
+        <section className={styles.adverts}>
+          {adverts.map(advert => (
+            <AdvertExtract
+              key={advert.id}
+              onAdvertClick={() => history.push(`/adverts/${advert.id}`)}
+              advert={advert}
+            ></AdvertExtract>
+          ))}
+        </section>
+      </article>
       <Button onClick={() => onLogout()}>Cerrar sesión</Button>
     </div>
   );
