@@ -1,7 +1,7 @@
 import { Advert } from "./Advert";
 
 export class AdvertRepository {
-  static url = "http://localhost:8080/apiv1/anuncios";
+  static url = "http://localhost:27017/apiv1/anuncios";
 
   async create(advert) {
     fetch(AdvertRepository.url, {
