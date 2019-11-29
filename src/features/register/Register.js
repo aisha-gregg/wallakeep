@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Input } from "../../components/input/Input";
+import { InputText } from "../../components/input-text/InputText";
 import { Button } from "../../components/button/Button";
 import styles from "./Register.module.css";
 import { Form } from "../../components/form/Form";
@@ -35,17 +35,17 @@ export function Register({ onRegister }) {
   return (
     <div className={styles.wrapper}>
       <Form>
-        <Input
+        <InputText
           name="Escribe un nombre"
           value={name}
           onValueChange={newValue => setName(newValue)}
         />
-        <Input
+        <InputText
           name="Escribe un apellido"
           value={lastName}
           onValueChange={newValue => setLastName(newValue)}
         />
-        <Input
+        <InputText
           name="Escribe una contraseña"
           value={password}
           onValueChange={newValue => setPassword(newValue)}

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Dropdown.module.css";
+import { Input } from "../input/Input";
 
 export function Dropdown({ name, onValueChange, options }) {
   return (
-    <label className={styles.div}>
-      {name}
+    <Input name={name}>
       <select
         name={name}
         className={styles.dropdown}
@@ -16,6 +16,6 @@ export function Dropdown({ name, onValueChange, options }) {
           </option>
         ))}
       </select>
-    </label>
+    </Input>
   );
 }

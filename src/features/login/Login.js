@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "../../components/input/Input";
+import { InputText } from "../../components/input-text/InputText";
 import { Button } from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
@@ -12,12 +12,12 @@ export function Login({ onLogin }) {
   return (
     <div className={styles.wrapper}>
       <Form>
-        <Input
+        <InputText
           name="Nombre"
           value={name}
           onValueChange={newValue => setName(newValue)}
         />
-        <Input
+        <InputText
           name="Apellido"
           value={lastName}
           onValueChange={newValue => setLastName(newValue)}

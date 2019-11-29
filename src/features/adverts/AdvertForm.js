@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form } from "../../components/form/Form";
-import { Input } from "../../components/input/Input";
 import { Button } from "../../components/button/Button";
 import { Advert } from "../adverts/Advert";
+import { InputText } from "../../components/input-text/InputText";
 
 AdvertForm.defaultProps = {
   advert: {
@@ -21,31 +21,31 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
 
   return (
     <Form>
-      <Input
+      <InputText
         name="Nombre"
         value={name}
         onValueChange={newValue => setName(newValue)}
-      ></Input>
-      <Input
+      ></InputText>
+      <InputText
         name="Descripción"
         value={description}
         onValueChange={newValue => setDescription(newValue)}
-      ></Input>
-      <Input
+      ></InputText>
+      <InputText
         name="Imagen"
         value={image}
         onValueChange={newValue => setImage(newValue)}
-      ></Input>
-      <Input
+      ></InputText>
+      <InputText
         name="Precio"
         value={price}
         onValueChange={newValue => setPrice(newValue)}
-      ></Input>
-      <Input
+      ></InputText>
+      <InputText
         name="Tags"
         value={tags}
         onValueChange={newValue => setTags(newValue)}
-      ></Input>
+      ></InputText>
 
       <Button
         onClick={() =>
