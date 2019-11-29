@@ -1,4 +1,14 @@
 .advert {
   display: flex;
   flex-direction: column;
+  border: solid 1px;
+  border-style: outset;
+  padding: var(--big);
+  border-color: var(--primary-color);
+  border-radius: var(--small);
+  box-shadow: 4px 6px 1px 1px #25212130;
+}
+
+.item-name {
+  border-bottom: 1px solid black;
 }

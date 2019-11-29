@@ -1,0 +1,17 @@
+.wrapper {
+  display: block;
+  padding-bottom: var(--normal);
+}
+
+.label {
+  margin: 0;
+  margin-bottom: var(--small);
+}
+
+.input {
+  background-color: var(--gray-color);
+  padding: var(--normal);
+  border-radius: 10px;
+  outline: 0;
+  border: none;
+}
