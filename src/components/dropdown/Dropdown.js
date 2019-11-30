@@ -7,14 +7,17 @@ export function Dropdown({ name, onValueChange, options, selected }) {
     <Input name={name}>
       <select
         multiple={true}
-        value={selected}
+        value={selected.map(selectedOption => selectedOption.value)}
         name={name}
         className={styles.dropdown}
         onChange={event =>
           onValueChange(
             [...event.target.options]
               .filter(option => option.selected)
-              .map(option => option.value)
+              .map(option => ({
+                value: option.value,
+                name: option.name
+              }))
           )
         }
       >
@@ -27,3 +30,8 @@ export function Dropdown({ name, onValueChange, options, selected }) {
     </Input>
   );
 }
+
+/**
+ * options = [{ value: 'foo', name: 'Foo' }, { value: 'faz', name: 'Faz' }]
+ * selected = [{ value: 'faz', name: 'Faz' }]
+ */

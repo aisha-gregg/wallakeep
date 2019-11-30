@@ -73,7 +73,7 @@ export class Advert {
       photo: this.image,
       price: this.price,
       tags: this.tags.map(tag => tag.value),
-      type: "buy",
+      type: this.type,
       description: this.description,
       publicationDate: this.publicationDate,
       updatedAt: this.updatedAt

@@ -20,20 +20,32 @@ AdvertForm.defaultProps = {
   }
 };
 
+function buildTags(tags) {
+  return tags.map(tag => ({ name: tag, value: tag }));
+}
+
+function buildTagOptions(tags) {
+  return tags.map(tag => ({ name: tag.value, value: tag.value }));
+}
+
 export function AdvertForm({ onSubmit, advert, confirmText }) {
   const [name, setName] = useState(advert.name);
   const [description, setDescription] = useState(advert.description);
   const [image, setImage] = useState(advert.image);
   const [price, setPrice] = useState(advert.price);
-  const [selectedTags, setSelectedTags] = useState(advert.tags);
+  const [selectedTags, setSelectedTags] = useState(buildTags(advert.tags));
   const [tags, setTags] = useState([]);
   const [type, setSelectedType] = useState(advert.type);
+  const tagRepository = new TagRepository();
 
   useEffect(() => {
-    new TagRepository().findAll().then(tagResults => setTags(tagResults));
+    tagRepository.findAll().then(tagResults => setTags(tagResults));
   }, []);
 
-  const tagOptions = tags.map(tag => ({ name: tag.value, value: tag.value }));
+  const typeOptions = [
+    { name: "Comprar", value: "buy" },
+    { name: "Vender", value: "sell" }
+  ];
 
   return (
     <Form>
@@ -59,12 +71,13 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
       ></InputNumber>
       <Dropdown
         name="Tag"
-        options={tagOptions}
+        options={buildTagOptions(tags)}
         selected={selectedTags}
         onValueChange={newValue => setSelectedTags(newValue)}
       ></Dropdown>
       <RadioButton
         name="type"
+        options={typeOptions}
         value={type}
         onValueChange={newValue => setSelectedType(newValue)}
       ></RadioButton>
@@ -77,7 +90,7 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
               name,
               description,
               price,
-              tags,
+              tags: selectedTags,
               image,
               type
             })
