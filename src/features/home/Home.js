@@ -4,22 +4,26 @@ import { Button } from "../../components/button/Button";
 import { AdvertRepository } from "../adverts/AdvertRepository";
 import { AdvertExtract } from "../adverts/AdvertExtract";
 import styles from "./Home.module.css";
+import { Filter } from "../../components/filters/Filter";
 
 export function Home({ onLogout }) {
   const [adverts, setAdverts] = useState([]);
   const history = useHistory();
 
+  const [filters, setFilters] = useState({});
+
   const advertRepository = new AdvertRepository();
 
   useEffect(() => {
-    advertRepository.findAll().then(results => setAdverts(results));
-  }, []);
+    advertRepository.findAll(filters).then(results => setAdverts(results));
+  }, [filters]);
 
   return (
     <div>
       <Button onClick={() => history.push("/advert-create")}>
         Crear anuncio
       </Button>
+      <Filter onApply={filters => setFilters(filters)}></Filter>
       <article className={styles.article}>
         <section className={styles.adverts}>
           {adverts.map(advert => (

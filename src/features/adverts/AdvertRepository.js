@@ -22,8 +22,25 @@ export class AdvertRepository {
     });
   }
 
-  async findAll() {
-    const result = await fetch(AdvertRepository.url);
+  async findAll({ articleName, minPrice, maxPrice, tag, type }) {
+    const url = new URL(AdvertRepository.url);
+    const filteredParams = Object.fromEntries(
+      Object.entries({
+        name: articleName,
+        price:
+          minPrice !== undefined && maxPrice !== undefined
+            ? minPrice + "-" + maxPrice
+            : undefined,
+        tag,
+        venta: type === "sell" ? true : false
+      }).filter(([key, value]) => {
+        return value !== undefined && value !== "";
+      })
+    );
+
+    url.search = new URLSearchParams(filteredParams).toString();
+
+    const result = await fetch(url);
     const response = await result.json();
     const backendAdverts = response.results;
     const adverts = [];
