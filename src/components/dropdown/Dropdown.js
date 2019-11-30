@@ -30,8 +30,3 @@ export function Dropdown({ name, onValueChange, options, selected }) {
     </Input>
   );
 }
-
-/**
- * options = [{ value: 'foo', name: 'Foo' }, { value: 'faz', name: 'Faz' }]
- * selected = [{ value: 'faz', name: 'Faz' }]
- */
