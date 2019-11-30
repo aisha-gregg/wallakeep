@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { AdvertRepository } from "../adverts/AdvertRepository";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { AdvertForm } from "../adverts/AdvertForm";
 
 export function AdvertModify() {
   const [advert, setAdvert] = useState(null);
   const advertRepository = new AdvertRepository();
   const params = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     advertRepository.findOne(params.id).then(result => setAdvert(result));
@@ -19,7 +20,10 @@ export function AdvertModify() {
   return (
     <AdvertForm
       advert={advert}
-      onSubmit={advert => advertRepository.update(advert)}
+      onSubmit={advert => {
+        advertRepository.update(advert);
+        history.push("/home");
+      }}
       confirmText="Editar"
     ></AdvertForm>
   );

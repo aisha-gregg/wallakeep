@@ -4,15 +4,18 @@ export class AdvertRepository {
   static url = "http://localhost:8080/apiv1/anuncios";
 
   async create(advert) {
-    fetch(AdvertRepository.url, {
+    const fetchResponse = await fetch(AdvertRepository.url, {
       method: "POST",
       body: JSON.stringify(advert.toJson()),
       headers: { "Content-Type": "application/json" }
     });
+    if (fetchResponse.status === 422) {
+      throw new Error();
+    }
   }
 
   async update(advert) {
-    fetch(`${AdvertRepository.url}/${advert.id}`, {
+    await fetch(`${AdvertRepository.url}/${advert.id}`, {
       method: "PUT",
       body: JSON.stringify(advert.toJson()),
       headers: { "Content-Type": "application/json" }
