@@ -29,6 +29,20 @@ export class Advert {
     return this.type === "buy";
   }
 
+  static create({ id, name, image, price, tags, type, description }) {
+    return new Advert({
+      id,
+      name,
+      image,
+      price,
+      tags,
+      type,
+      description,
+      publicationDate: new Date(),
+      updatedAt: new Date()
+    });
+  }
+
   static fromBackend({
     createdAt,
     description,
@@ -51,5 +65,18 @@ export class Advert {
       publicationDate: new Date(createdAt),
       updatedAt: new Date(updatedAt)
     });
+  }
+
+  toJson() {
+    return {
+      name: this.name,
+      photo: this.image,
+      price: this.price,
+      tags: this.tags.map(tag => tag.value),
+      type: "buy",
+      description: this.description,
+      publicationDate: this.publicationDate,
+      updatedAt: this.updatedAt
+    };
   }
 }

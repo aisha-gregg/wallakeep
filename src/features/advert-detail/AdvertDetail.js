@@ -18,11 +18,8 @@ export function AdvertDetail() {
     return <span>Cargando</span>;
   }
 
-  console.log(advert);
   return (
     <div>
-      <h1>Wallakeep Inc.</h1>
-
       <Button onClick={() => history.push(`/advert-modify/${advert.id}`)}>
         Editar
       </Button>
@@ -30,6 +27,8 @@ export function AdvertDetail() {
       <article className={styles.advert}>
         <h2>{advert.name}</h2>
         <p>{advert.description}</p>
+        <p>{advert.price}</p>
+        <p>{advert.type}</p>
         {advert.tags.map(tag => (
           <Button key={tag}>{tag}</Button>
         ))}

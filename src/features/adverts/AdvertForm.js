@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "../../components/form/Form";
 import { Button } from "../../components/button/Button";
 import { Advert } from "../adverts/Advert";
 import { InputText } from "../../components/input-text/InputText";
+import { Dropdown } from "../../components/dropdown/Dropdown";
+import { TagRepository } from "../tags/TagRepository";
+import { InputNumber } from "../../components/input-number/InputNumber";
+import { RadioButton } from "../../components/radio-button/RadioButton";
 
 AdvertForm.defaultProps = {
   advert: {
     id: "",
     name: "",
-    description: ""
+    image: "",
+    price: 0,
+    description: "",
+    tags: [],
+    type: "sell"
   }
 };
 
@@ -17,7 +25,15 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
   const [description, setDescription] = useState(advert.description);
   const [image, setImage] = useState(advert.image);
   const [price, setPrice] = useState(advert.price);
-  const [tags, setTags] = useState(advert.tags);
+  const [selectedTags, setSelectedTags] = useState(advert.tags);
+  const [tags, setTags] = useState([]);
+  const [type, setSelectedType] = useState(advert.type);
+
+  useEffect(() => {
+    new TagRepository().findAll().then(tagResults => setTags(tagResults));
+  }, []);
+
+  const tagOptions = tags.map(tag => ({ name: tag.value, value: tag.value }));
 
   return (
     <Form>
@@ -36,20 +52,36 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
         value={image}
         onValueChange={newValue => setImage(newValue)}
       ></InputText>
-      <InputText
+      <InputNumber
         name="Precio"
         value={price}
         onValueChange={newValue => setPrice(newValue)}
-      ></InputText>
-      <InputText
-        name="Tags"
-        value={tags}
-        onValueChange={newValue => setTags(newValue)}
-      ></InputText>
+      ></InputNumber>
+      <Dropdown
+        name="Tag"
+        options={tagOptions}
+        selected={selectedTags}
+        onValueChange={newValue => setSelectedTags(newValue)}
+      ></Dropdown>
+      <RadioButton
+        name="type"
+        value={type}
+        onValueChange={newValue => setSelectedType(newValue)}
+      ></RadioButton>
 
       <Button
         onClick={() =>
-          onSubmit(new Advert({ id: advert.id, name, description }))
+          onSubmit(
+            new Advert({
+              id: advert.id,
+              name,
+              description,
+              price,
+              tags,
+              image,
+              type
+            })
+          )
         }
       >
         <strong>{confirmText}</strong>

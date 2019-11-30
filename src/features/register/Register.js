@@ -12,6 +12,7 @@ export function Register({ onRegister }) {
   const [lastName, setLastName] = useState("Gregg");
   const [password, setPassword] = useState("hello");
   const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
   const history = useHistory();
   const tagRepository = new TagRepository();
 
@@ -53,7 +54,11 @@ export function Register({ onRegister }) {
         <Dropdown
           name="Tag"
           options={tagOptions}
-          onValueChange={newValue => setTags(newValue)}
+          selected={selectedTags}
+          onValueChange={newValue => {
+            console.log({ newValue });
+            setSelectedTags(newValue);
+          }}
         />
         <Button
           onClick={() => {
