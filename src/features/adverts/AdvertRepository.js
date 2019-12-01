@@ -32,7 +32,7 @@ export class AdvertRepository {
             ? minPrice + "-" + maxPrice
             : undefined,
         tag,
-        venta: type === "sell" ? true : false
+        venta: this._getType(type)
       }).filter(([key, value]) => {
         return value !== undefined && value !== "";
       })
@@ -56,5 +56,12 @@ export class AdvertRepository {
     const response = await result.json();
     const backendAdvert = response.result;
     return Advert.fromBackend(backendAdvert);
+  }
+
+  _getType(type) {
+    if (type === "all") {
+      return undefined;
+    }
+    return type === "sell" ? true : false;
   }
 }

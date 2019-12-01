@@ -3,3 +3,18 @@
   grid-gap: var(--small);
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
+.button {
+  display: flex;
+  justify-self: center;
+  margin-right: var(--small);
+}
+
+.align {
+  display: flex;
+  justify-content: center;
+}
+
+.align > * {
+  margin-right: var(--small);
+}

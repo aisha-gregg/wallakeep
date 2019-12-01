@@ -9,29 +9,39 @@ export function Filter({ onApply }) {
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
   const [tag, setTag] = useState(undefined);
-  const [type, setType] = useState(undefined);
+  const [type, setType] = useState("todo");
 
   return (
     <div>
       <InputText
+        name=" Nombre de artículo"
         value={articleName}
         onValueChange={value => setArticleName(value)}
-      ></InputText>
+      >
+        {" "}
+      </InputText>
       <InputNumber
+        name="Precio Mínimo"
         value={minPrice}
         onValueChange={value => setMinPrice(value)}
       ></InputNumber>
       <InputNumber
+        name=" Precio Máximo"
         value={maxPrice}
         onValueChange={value => setMaxPrice(value)}
       ></InputNumber>
 
-      <InputText value={tag} onValueChange={value => setTag(value)}></InputText>
+      <InputText
+        name="  Tag"
+        value={tag}
+        onValueChange={value => setTag(value)}
+      ></InputText>
 
       <RadioButton
         options={[
           { value: "buy", name: "Comprar" },
-          { value: "sell", name: "Vender" }
+          { value: "sell", name: "Vender" },
+          { value: "all", name: "Todo" }
         ]}
         value={type}
         onValueChange={value => setType(value)}

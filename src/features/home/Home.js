@@ -13,6 +13,7 @@ export function Home({ onLogout }) {
   const [filters, setFilters] = useState({});
 
   const advertRepository = new AdvertRepository();
+  const onDisplay = useState(false);
 
   useEffect(() => {
     advertRepository.findAll(filters).then(results => setAdverts(results));
@@ -20,10 +21,15 @@ export function Home({ onLogout }) {
 
   return (
     <div>
-      <Button onClick={() => history.push("/advert-create")}>
-        Crear anuncio
-      </Button>
+      <div className={styles.align}>
+        <Button onClick={() => history.push("/advert-create")}>
+          Crear anuncio
+        </Button>
+        <Button onClick={() => onLogout()}>Cerrar sesión</Button>
+        <Button onClick={() => onDisplay()}>Filtrar</Button>{" "}
+      </div>
       <Filter onApply={filters => setFilters(filters)}></Filter>
+
       <article className={styles.article}>
         <section className={styles.adverts}>
           {adverts.map(advert => (
@@ -35,7 +41,6 @@ export function Home({ onLogout }) {
           ))}
         </section>
       </article>
-      <Button onClick={() => onLogout()}>Cerrar sesión</Button>
     </div>
   );
 }
