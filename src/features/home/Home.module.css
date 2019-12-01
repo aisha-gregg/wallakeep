@@ -18,3 +18,18 @@
 .align > * {
   margin-right: var(--small);
 }
+
+.filters {
+  opacity: 0;
+  transform: translate(-100%);
+  transition: 1s ease all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.is-displayed {
+  opacity: 1;
+  transform: translateX(0);
+}

@@ -4,7 +4,7 @@ import { Button } from "../button/Button";
 import { InputNumber } from "../input-number/InputNumber";
 import { RadioButton } from "../radio-button/RadioButton";
 
-export function Filter({ onApply }) {
+export function Filter({ onApply, ...rest }) {
   const [articleName, setArticleName] = useState("");
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
@@ -12,7 +12,7 @@ export function Filter({ onApply }) {
   const [type, setType] = useState("todo");
 
   return (
-    <div>
+    <div {...rest}>
       <InputText
         name=" Nombre de artículo"
         value={articleName}
