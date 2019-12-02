@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./AdvertExtract.module.css";
-import { Button } from "../../components/button/Button";
+import { tag } from "../../features/tags/Tag.js";
+import { Tags } from "../../components/TagStyle/Tags";
 
 export function AdvertExtract({ advert, onAdvertClick }) {
   return (
@@ -11,10 +12,10 @@ export function AdvertExtract({ advert, onAdvertClick }) {
       <span>{advert.price}€</span>
       <div className={styles.buttons}>
         {advert.tags.map(tag => (
-          <Button>{tag}</Button>
+          <Tags>{tag}</Tags>
         ))}
       </div>
-      <span>{advert.type}</span>
+      <span>{advert.type.toUpperCase()}</span>
     </article>
   );
 }

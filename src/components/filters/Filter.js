@@ -3,8 +3,9 @@ import { InputText } from "../input-text/InputText";
 import { Button } from "../button/Button";
 import { InputNumber } from "../input-number/InputNumber";
 import { RadioButton } from "../radio-button/RadioButton";
+import styles from "./Filter.module.css";
 
-export function Filter({ onApply, ...rest }) {
+export function Filter({ onApply, className }) {
   const [articleName, setArticleName] = useState("");
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
@@ -12,27 +13,25 @@ export function Filter({ onApply, ...rest }) {
   const [type, setType] = useState("todo");
 
   return (
-    <div {...rest}>
+    <div className={styles.margin + " " + className}>
       <InputText
-        name=" Nombre de artículo"
+        name="Nombre de artículo"
         value={articleName}
         onValueChange={value => setArticleName(value)}
-      >
-        {" "}
-      </InputText>
+      ></InputText>
       <InputNumber
         name="Precio Mínimo"
         value={minPrice}
         onValueChange={value => setMinPrice(value)}
       ></InputNumber>
       <InputNumber
-        name=" Precio Máximo"
+        name="Precio Máximo"
         value={maxPrice}
         onValueChange={value => setMaxPrice(value)}
       ></InputNumber>
 
       <InputText
-        name="  Tag"
+        name="Tag"
         value={tag}
         onValueChange={value => setTag(value)}
       ></InputText>

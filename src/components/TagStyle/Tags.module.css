@@ -1,0 +1,8 @@
+.tags {
+  display: flex;
+  justify-content: center;
+  background-color: var(--gray-color);
+  border-radius: var(--border-radius);
+  border: none;
+  padding: var(--small);
+}

@@ -19,7 +19,7 @@ export function AdvertDetail() {
   }
 
   return (
-    <div>
+    <div className={styles.detail}>
       <Button onClick={() => history.push(`/advert-modify/${advert.id}`)}>
         Editar
       </Button>

@@ -21,14 +21,6 @@ export class Advert {
     this.updatedAt = updatedAt;
   }
 
-  isSelling() {
-    return this.type === "sell";
-  }
-
-  isBuying() {
-    return this.type === "buy";
-  }
-
   static create({ id, name, image, price, tags, type, description }) {
     return new Advert({
       id,
