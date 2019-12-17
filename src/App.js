@@ -13,6 +13,7 @@ import { LoginContext } from "./features/login/LoginContext";
 import { AdvertDetail } from "./features/advert-detail/AdvertDetail";
 import { AdvertCreate } from "./features/advert-create/AdvertCreate";
 import { AdvertModify } from "./features/advert-modify/AdvertModify";
+import { connect } from "react-redux";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -36,13 +37,14 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-export function App() {
+function AppComponent({ user }) {
   const isUserLoggedIn = Boolean(localStorage.getItem("isUserLoggedIn"));
   const [state, setState] = useState({ isUserLoggedIn });
 
   return (
     <ErrorBoundary>
       <LoginContext.Provider value={state}>
+        {JSON.stringify(user)}
         <Router>
           {!state.isUserLoggedIn ? (
             <Redirect to="/login"></Redirect>
@@ -96,3 +98,10 @@ export function App() {
     localStorage.setItem("isUserLoggedIn", false);
   }
 }
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export const App = connect(mapStateToProps)(AppComponent);
