@@ -1,4 +1,4 @@
-import { actionTypes } from "./actions";
+import { actionTypes } from "./actionTypes";
 
 export function saveUser({ name, lastname, password, tags }) {
   return {

@@ -3,4 +3,5 @@ import { createStore } from "redux";
 import { reducer } from "./reducers";
 
 const composedEnhancers = composeWithDevTools();
-export const store = createStore(reducer, undefined, composedEnhancers);
+const user = JSON.parse(localStorage.getItem("user"));
+export const store = createStore(reducer, { user }, composedEnhancers);

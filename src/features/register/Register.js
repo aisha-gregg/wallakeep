@@ -6,6 +6,8 @@ import styles from "./Register.module.css";
 import { Form } from "../../components/form/Form";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { TagRepository } from "../tags/TagRepository";
+import { useDispatch } from "react-redux";
+import { saveUser as saveUserActionCreator } from "../store/actionCreators";
 
 export function Register({ onRegister }) {
   const [name, setName] = useState("Aisha");
@@ -15,14 +17,23 @@ export function Register({ onRegister }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const history = useHistory();
   const tagRepository = new TagRepository();
+  const dispatch = useDispatch();
 
   function saveUser() {
     const user = {
       name,
       lastName,
       password,
-      tag: tags
+      tags: selectedTags
     };
+    dispatch(
+      saveUserActionCreator({
+        name,
+        lastname: lastName,
+        password,
+        tags: selectedTags
+      })
+    );
     localStorage.setItem("user", JSON.stringify(user));
     history.push("/home");
   }
