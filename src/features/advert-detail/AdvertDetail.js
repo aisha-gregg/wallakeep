@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { AdvertRepository } from "../adverts/AdvertRepository";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./AdvertDetail.module.css";
 import { Button } from "../../components/button/Button";
+import { useSelector } from "react-redux";
 
 export function AdvertDetail() {
-  const [advert, setAdvert] = useState(null);
-  const advertRepository = new AdvertRepository();
   const params = useParams();
+  const advert =
+    useSelector(state =>
+      state.adverts.find(advert => advert.id === params.id)
+    ) || null;
   const history = useHistory();
-
-  useEffect(() => {
-    advertRepository.findOne(params.id).then(result => setAdvert(result));
-  }, []);
 
   if (advert === null) {
     return <span>Cargando</span>;
