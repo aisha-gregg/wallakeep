@@ -10,7 +10,7 @@ import { getAdverts } from "../store/actionCreators";
 export function Home({ onLogout }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const adverts = useSelector(state => state.adverts) || [];
+  const adverts = useSelector(state => state.adverts);
   const [filters, setFilters] = useState(null);
   const [display, setDisplay] = useState(false);
 

@@ -8,7 +8,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 export const store = createStore(
   reducer,
-  { user },
+  { user, adverts: [] },
   composeWithDevTools(applyMiddleware(thunk))
 );
 

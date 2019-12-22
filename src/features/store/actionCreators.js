@@ -20,11 +20,30 @@ export function setAdverts({ adverts }) {
   };
 }
 
+export function createdAdvert() {
+  return {
+    type: actionTypes.CREATED_ADVERT
+  };
+}
+
+export function editedAdvert() {
+  return {
+    type: actionTypes.EDITED_ADVERT
+  };
+}
+
+export function gotAdverts() {
+  return {
+    type: actionTypes.GOT_ADVERTS
+  };
+}
+
 export function createAdvert({ advert }) {
   return async dispatch => {
     const advertRepository = new AdvertRepository();
     await advertRepository.create(advert);
     dispatch(getAdverts());
+    dispatch(createdAdvert());
   };
 }
 
@@ -33,6 +52,7 @@ export function editAdvert({ advert }) {
     const advertRepository = new AdvertRepository();
     await advertRepository.update(advert);
     dispatch(getAdverts());
+    dispatch(editedAdvert());
   };
 }
 
@@ -41,5 +61,6 @@ export function getAdverts(filters) {
     const advertRepository = new AdvertRepository();
     const adverts = await advertRepository.findAll(filters);
     dispatch(setAdverts({ adverts }));
+    dispatch(gotAdverts());
   };
 }
