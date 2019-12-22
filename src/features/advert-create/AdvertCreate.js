@@ -1,11 +1,13 @@
 import React from "react";
 import { AdvertForm } from "../adverts/AdvertForm";
-import { AdvertRepository } from "../adverts/AdvertRepository";
 import { useHistory } from "react-router-dom";
+import { createAdvert } from "../store/actionCreators";
+import { useDispatch } from "react-redux";
 
 export function AdvertCreate() {
-  const advertRepository = new AdvertRepository();
   const history = useHistory();
+  const dispatch = useDispatch();
+
   return (
     <AdvertForm
       onSubmit={advert => handleSubmit(advert)}
@@ -15,7 +17,7 @@ export function AdvertCreate() {
 
   async function handleSubmit(advert) {
     try {
-      await advertRepository.create(advert);
+      dispatch(createAdvert({ advert }));
       history.push("/home");
     } catch {}
   }

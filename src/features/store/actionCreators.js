@@ -20,6 +20,20 @@ export function setAdverts({ adverts }) {
   };
 }
 
+export function createAdvert({ advert }) {
+  return async () => {
+    const advertRepository = new AdvertRepository();
+    return advertRepository.create(advert);
+  };
+}
+
+//export function editAdvert({ advert }) {
+//return {
+// type: actionTypes.EDIT_ADVERT,
+//advert
+//};
+//}
+
 export function getAdverts(filters) {
   return async dispatch => {
     const advertRepository = new AdvertRepository();
