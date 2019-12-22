@@ -62,6 +62,15 @@ export class AdvertRepository {
     if (type === "all") {
       return undefined;
     }
-    return type === "sell" ? true : false;
+
+    if (type === "sell") {
+      return true;
+    }
+
+    if (type === "buy") {
+      return false;
+    }
+
+    return undefined;
   }
 }

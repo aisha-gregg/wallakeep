@@ -20,10 +20,10 @@ export function setAdverts({ adverts }) {
   };
 }
 
-export function getAdverts() {
+export function getAdverts(filters) {
   return async dispatch => {
     const advertRepository = new AdvertRepository();
-    const adverts = await advertRepository.findAll();
+    const adverts = await advertRepository.findAll(filters);
     dispatch(setAdverts({ adverts }));
   };
 }
