@@ -21,9 +21,10 @@ export function setAdverts({ adverts }) {
 }
 
 export function createAdvert({ advert }) {
-  return async () => {
+  return async dispatch => {
     const advertRepository = new AdvertRepository();
-    return advertRepository.create(advert);
+    await advertRepository.create(advert);
+    dispatch(getAdverts());
   };
 }
 

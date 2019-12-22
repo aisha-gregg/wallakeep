@@ -11,8 +11,6 @@ export function reducer(state = initialState, action) {
       return { ...state, user: action.user };
     case actionTypes.SET_ADVERTS:
       return { ...state, adverts: action.adverts };
-    case actionTypes.CREATE_ADVERT:
-      return { ...state, advert: action.advert };
     default:
       return state;
   }

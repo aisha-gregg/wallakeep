@@ -11,11 +11,13 @@ export function Home({ onLogout }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const adverts = useSelector(state => state.adverts) || [];
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState(null);
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    dispatch(getAdverts(filters));
+    if (filters !== null) {
+      dispatch(getAdverts(filters));
+    }
   }, [filters]);
 
   return (
