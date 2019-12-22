@@ -28,12 +28,13 @@ export function createAdvert({ advert }) {
   };
 }
 
-//export function editAdvert({ advert }) {
-//return {
-// type: actionTypes.EDIT_ADVERT,
-//advert
-//};
-//}
+export function editAdvert({ advert }) {
+  return async dispatch => {
+    const advertRepository = new AdvertRepository();
+    await advertRepository.update(advert);
+    dispatch(getAdverts());
+  };
+}
 
 export function getAdverts(filters) {
   return async dispatch => {
