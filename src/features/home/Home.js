@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "../../components/button/Button";
-import { AdvertRepository } from "../adverts/AdvertRepository";
 import { AdvertExtract } from "../adverts/AdvertExtract";
 import styles from "./Home.module.css";
 import { Filter } from "../../components/filters/Filter";
+import { useDispatch, useSelector } from "react-redux";
+import { getAdverts } from "../store/actionCreators";
 
 export function Home({ onLogout }) {
-  const [adverts, setAdverts] = useState([]);
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const adverts = useSelector(state => state.adverts) || [];
   const [filters, setFilters] = useState({});
-
-  const advertRepository = new AdvertRepository();
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    advertRepository.findAll(filters).then(results => setAdverts(results));
+    dispatch(getAdverts(filters));
   }, [filters]);
 
   return (

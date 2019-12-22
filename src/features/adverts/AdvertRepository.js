@@ -22,7 +22,7 @@ export class AdvertRepository {
     });
   }
 
-  async findAll({ articleName, minPrice, maxPrice, tag, type }) {
+  async findAll({ articleName, minPrice, maxPrice, tag, type } = {}) {
     const url = new URL(AdvertRepository.url);
     const filteredParams = Object.fromEntries(
       Object.entries({
