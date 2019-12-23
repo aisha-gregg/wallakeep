@@ -1,5 +1,6 @@
 import { actionTypes } from "./actionTypes";
 import { AdvertRepository } from "../adverts/AdvertRepository";
+import { AdvertRepositoryFactory } from "../adverts/__mocks__/AdvertRepositoryFactory";
 
 export function saveUser({ name, lastname, password, tags }) {
   return {
@@ -40,7 +41,7 @@ export function gotAdverts() {
 
 export function createAdvert({ advert }) {
   return async dispatch => {
-    const advertRepository = new AdvertRepository();
+    const advertRepository = AdvertRepositoryFactory.create();
     await advertRepository.create(advert);
     dispatch(getAdverts());
     dispatch(createdAdvert());
