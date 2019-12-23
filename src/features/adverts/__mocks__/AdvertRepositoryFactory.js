@@ -1,16 +1,12 @@
-export class AdvertRepositoryFactory {
-  mock = undefined;
+export const advertRepositoryFactoryMocks = {
+  create: jest.fn(),
+  update: jest.fn(),
+  findOne: jest.fn(),
+  findAll: jest.fn()
+};
 
-  static create() {
-    if (this.mock !== undefined) {
-      this.mock = {
-        create: jest.fn(),
-        update: jest.fn(),
-        findOne: jest.fn(),
-        findAll: jest.fn()
-      };
-    }
-
-    return this.mock;
+export const AdvertRepositoryFactory = {
+  create() {
+    return advertRepositoryFactoryMocks;
   }
-}
+};
