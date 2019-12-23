@@ -1,8 +1,8 @@
 import React from "react";
 import { AdvertForm } from "../adverts/AdvertForm";
 import { useHistory } from "react-router-dom";
-import { createAdvert } from "../store/actionCreators";
 import { useDispatch } from "react-redux";
+import { createAdvert } from "../store/actionCreators";
 
 export function AdvertCreate() {
   const history = useHistory();

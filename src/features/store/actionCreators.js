@@ -1,6 +1,6 @@
 import { actionTypes } from "./actionTypes";
 import { AdvertRepository } from "../adverts/AdvertRepository";
-import { AdvertRepositoryFactory } from "../adverts/__mocks__/AdvertRepositoryFactory";
+import { AdvertRepositoryFactory } from "../adverts/AdvertRepositoryFactory";
 
 export function saveUser({ name, lastname, password, tags }) {
   return {

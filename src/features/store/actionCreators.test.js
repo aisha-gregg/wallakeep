@@ -3,10 +3,11 @@ import {
   setAdverts,
   createdAdvert,
   editedAdvert,
-  createAdvert,
-  getAdverts
+  createAdvert
 } from "./actionCreators";
-import { AdvertRepositoryFactory } from "../adverts/__mocks__/AdvertRepositoryFactory";
+import { AdvertRepositoryFactory } from "../adverts/AdvertRepositoryFactory";
+
+jest.mock("../adverts/AdvertRepositoryFactory");
 
 describe("actionCreators", () => {
   it("should return the type if you call gotAdverts", () => {
