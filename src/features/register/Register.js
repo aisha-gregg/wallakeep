@@ -16,7 +16,6 @@ export function Register({ onRegister }) {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const history = useHistory();
-  const tagRepository = new TagRepository();
   const dispatch = useDispatch();
 
   function saveUser() {
@@ -39,6 +38,7 @@ export function Register({ onRegister }) {
   }
 
   useEffect(() => {
+    const tagRepository = new TagRepository();
     tagRepository.findAll().then(tagResults => setTags(tagResults));
   }, []);
 

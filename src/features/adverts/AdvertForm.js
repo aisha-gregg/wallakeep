@@ -36,9 +36,9 @@ export function AdvertForm({ onSubmit, advert, confirmText }) {
   const [selectedTags, setSelectedTags] = useState(buildTags(advert.tags));
   const [tags, setTags] = useState([]);
   const [type, setSelectedType] = useState(advert.type);
-  const tagRepository = new TagRepository();
 
   useEffect(() => {
+    const tagRepository = new TagRepository();
     tagRepository.findAll().then(tagResults => setTags(tagResults));
   }, []);
 

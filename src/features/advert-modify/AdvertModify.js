@@ -7,14 +7,14 @@ import { editAdvert } from "../store/actionCreators";
 
 export function AdvertModify() {
   const [advert, setAdvert] = useState(null);
-  const advertRepository = new AdvertRepository();
-  const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+  const params = useParams();
 
   useEffect(() => {
+    const advertRepository = new AdvertRepository();
     advertRepository.findOne(params.id).then(result => setAdvert(result));
-  }, []);
+  }, [params.id]);
 
   if (advert === null) {
     return <span>Cargando</span>;

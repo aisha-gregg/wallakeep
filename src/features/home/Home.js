@@ -18,7 +18,7 @@ export function Home({ onLogout }) {
     if (filters !== null) {
       dispatch(getAdverts(filters));
     }
-  }, [filters]);
+  }, [filters, dispatch]);
 
   return (
     <div>
